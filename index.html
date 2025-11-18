@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Цветы Армении — Премиальные оптовые поставки</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --color-bg-start: #fdfbf7; /* Кремовый */
+            --color-bg-end: #fff0f5;   /* Нежно-розовый */
+            --color-text-main: #333333;
+            --color-text-accent: #1a3c34; /* Глубокий зеленый */
+            --color-gold: #c5a065;        /* Благородное золото */
+            --color-gold-light: #e6dcc5;
+            --color-white: #ffffff;
+            
+            --font-main: 'Montserrat', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+            
+            --container-width: 1100px;
+            --spacing-section: 100px;
+        }
+
+        /* --- RESET & BASE --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: --font-main;
+            color: var(--color-text-main);
+            background: linear-gradient(180deg, var(--color-bg-start) 0%, var(--color-bg-end) 100%);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-serif);
+            color: var(--color-text-accent);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-family: var(--font-main);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- UTILITIES --- */
+        .section {
+            padding: var(--spacing-section) 0;
+        }
+
+        .text-center { text-align: center; }
+        .gold-accent { color: var(--color-gold); }
+        
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: var(--color-text-accent);
+            color: var(--color-white);
+            font-family: var(--font-main);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border: 1px solid var(--color-text-accent);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--color-gold);
+            border-color: var(--color-gold);
+            color: var(--color-text-accent);
+        }
+
+        /* --- ANIMATION CLASSES --- */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+        
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background-image: radial-gradient(circle at center, rgba(255,255,255,0.8) 0%, rgba(253, 251, 247, 0.4) 100%);
+            border-bottom: 1px solid var(--color-gold-light);
+        }
+
+        .hero::before {
+            /* Декоративная рамка "лепнина" */
+            content: "";
+            position: absolute;
+            top: 20px; bottom: 20px; left: 20px; right: 20px;
+            border: 1px solid var(--color-gold);
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            color: #555;
+        }
+
+        .hero-features {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--color-text-accent);
+        }
+
+        .feature-item::before {
+            content: "✦";
+            color: var(--color-gold);
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* --- ABOUT --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .card-bordered {
+            background: var(--color-white);
+            border: 1px solid var(--color-gold);
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            position: relative;
+        }
+
+        .card-bordered::after {
+            content: "";
+            position: absolute;
+            top: 5px; left: 5px; right: 5px; bottom: 5px;
+            border: 1px solid rgba(197, 160, 101, 0.3);
+            pointer-events: none;
+        }
+
+        /* --- CATALOG TABLE --- */
+        .catalog-wrapper {
+            overflow-x: auto;
+            background: var(--color-white);
+            padding: 2rem;
+            border: 1px solid var(--color-gold-light);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.02);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 800px; /* Force scroll on mobile */
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            font-family: var(--font-serif);
+            color: var(--color-text-accent);
+            font-size: 1.1rem;
+            border-bottom: 2px solid var(--color-gold);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .price-cell {
+            font-weight: 600;
+            color: var(--color-text-accent);
+        }
+
+        .catalog-note {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+            color: #777;
+            font-style: italic;
+        }
+
+        /* --- PROCESS --- */
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 200px;
+            background: var(--color-white);
+            padding: 1.5rem;
+            border-top: 3px solid var(--color-gold);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .step-number {
+            font-family: var(--font-serif);
+            font-size: 2rem;
+            color: var(--color-gold);
+            margin-bottom: 0.5rem;
+            opacity: 0.6;
+        }
+
+        .step h4 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .step p { font-size: 0.9rem; color: #555; margin: 0; }
+
+        /* --- LOGISTICS & PAYMENT GRID --- */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-card h3 {
+            border-bottom: 1px solid var(--color-gold-light);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .list-check li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        .list-check li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--color-text-accent);
+            font-weight: bold;
+        }
+
+        /* --- QUALITY & AUDIENCE --- */
+        .quality-block {
+            background-color: var(--color-text-accent);
+            color: var(--color-white);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        
+        .quality-block h2 { color: var(--color-gold); }
+        .quality-block p { color: #e0e0e0; max-width: 700px; margin: 0 auto 2rem; }
+
+        .audience-list {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .audience-item {
+            border: 1px solid var(--color-gold);
+            padding: 1rem 2rem;
+            color: var(--color-gold);
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+        }
+
+        /* --- FAQ --- */
+        details {
+            background: var(--color-white);
+            margin-bottom: 10px;
+            border: 1px solid #eee;
+            border-radius: 4px;
+            padding: 15px;
+        }
+
+        summary {
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none;
+            font-family: var(--font-serif);
+            color: var(--color-text-accent);
+        }
+        
+        summary::-webkit-details-marker { display: none; }
+        
+        details[open] summary {
+            margin-bottom: 10px;
+            color: var(--color-gold);
+        }
+
+        /* --- FORM --- */
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--color-white);
+            padding: 3rem;
+            border: 1px solid var(--color-gold);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+        }
+
+        .form-group { margin-bottom: 1.5rem; }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            font-family: var(--font-main);
+            font-size: 1rem;
+            background-color: #fcfcfc;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-gold);
+            background-color: #fff;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--color-text-accent);
+            color: #aaa;
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        /* --- MOBILE --- */
+        @media (max-width: 768px) {
+            .hero-content h1 { font-size: 2.5rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            .process-steps { flex-direction: column; }
+            .container { padding: 0 15px; }
+            .form-container { padding: 1.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero fade-in-section">
+        <div class="container hero-content">
+            <h1>Цветы Армении</h1>
+            <p class="hero-subtitle">
+                Премиальные оптовые цветы из наших теплиц в Армении.<br>
+                Свежий срез под заказ для магазинов по всей России.
+            </p>
+            
+            <div class="hero-features">
+                <div class="feature-item">Прямые поставки</div>
+                <div class="feature-item">Свежий срез</div>
+                <div class="feature-item">Выгодная логистика</div>
+            </div>
+
+            <a href="#form" class="btn">Оставить заявку на прайс</a>
+        </div>
+    </header>
+
+    <section class="section container fade-in-section" id="about">
+        <div class="about-grid">
+            <div>
+                <h2>Происхождение и Свежесть</h2>
+                <p>Мы реализуем цветы исключительно с собственных теплиц в Армении. Наш подход исключает долгое хранение на складах.</p>
+                <p>Цветок срезается строго под заказ, упаковывается и в этот же день авиадоставкой отправляется в Москву. От момента среза до поступления на московский склад проходит <strong>не более 12 часов</strong>.</p>
+                <p>Это гарантирует, что ваши клиенты получат товар премиального качества с максимальным сроком жизни в вазе.</p>
+            </div>
+            <div class="card-bordered text-center">
+                <h3 style="margin-top: 1rem;">Zero Stock Policy</h3>
+                <p>На свободной продаже цветы не лежат.<br>Только конкретные заказы под клиента.</p>
+                <div style="font-size: 3rem; color: var(--color-gold);">✦</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section container fade-in-section" id="catalog">
+        <div class="text-center">
+            <h2>Ассортимент и Цены</h2>
+            <p style="max-width: 600px; margin: 0 auto 2rem;">
+                Актуальные базовые цены на срез. Стоимость указана на складе в Москве.
+            </p>
+        </div>
+
+        <div class="catalog-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>№</th>
+                        <th>Наименование</th>
+                        <th>Цена, ₽/шт</th>
+                        <th>Упаковка, шт/уп</th>
+                        <th>Стоимость упаковки, ₽</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Эустома букетная</td>
+                        <td class="price-cell">120 ₽</td>
+                        <td>300</td>
+                        <td>36 000 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Альстромерия 60 см</td>
+                        <td class="price-cell">40 ₽</td>
+                        <td>500</td>
+                        <td>20 000 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Альстромерия 80 см</td>
+                        <td class="price-cell">50 ₽</td>
+                        <td>400</td>
+                        <td>20 000 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Матиолла</td>
+                        <td class="price-cell">95 ₽</td>
+                        <td>200</td>
+                        <td>19 000 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Гвоздика</td>
+                        <td class="price-cell">34 ₽</td>
+                        <td>200</td>
+                        <td>6 600 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Хризантема кустовая</td>
+                        <td class="price-cell">90 ₽</td>
+                        <td>160</td>
+                        <td>14 400 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Хризантема «бигуди»</td>
+                        <td class="price-cell">110 ₽</td>
+                        <td>120</td>
+                        <td>13 200 ₽</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Гербера</td>
+                        <td class="price-cell">60 ₽</td>
+                        <td>60</td>
+                        <td>3 600 ₽</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <p class="catalog-note text-center">* Актуальный ассортимент и наличие уточняйте у менеджера. Цены могут меняться в зависимости от сезона.</p>
+    </section>
+
+    <section class="section container fade-in-section">
+        <h2 class="text-center">Этапы работы</h2>
+        <div class="process-steps">
+            <div class="step">
+                <div class="step-number">01</div>
+                <h4>Заявка</h4>
+                <p>Вы оставляете запрос. Менеджер связывается для уточнения деталей.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">02</div>
+                <h4>Срез и отправка</h4>
+                <p>Срез в Армении под заказ. Авиадоставка в Москву за 12 часов.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">03</div>
+                <h4>Логистика МСК</h4>
+                <p>Доставка до ТК. Фотоотчёт коробок с вашей маркировкой.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">04</div>
+                <h4>Оплата и регионы</h4>
+                <p>Вы подтверждаете фотоотчет, оплачиваете, и груз уезжает к вам.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section container fade-in-section">
+        <div class="info-grid">
+            <div class="info-card card-bordered">
+                <h3>Логистика</h3>
+                <p>Все поставки проходят через наш хаб в Москве. Цена в прайсе — EXW Москва.</p>
+                <p><strong>Транспортные компании:</strong><br>
+                БестФлора, ФлораТрак, ФрешЛогистик или любая ТК на ваш выбор.</p>
+                <p><em>Ориентир доставки до региона: ~1000 ₽/коробка (оплачивается клиентом напрямую ТК).</em></p>
+            </div>
+
+            <div class="info-card card-bordered">
+                <h3>Оплата и Договор</h3>
+                <p><strong>Безопасная схема первого заказа:</strong><br>
+                Мы довозим груз до ТК → делаем фото размещения в машине → вы оплачиваете → мы передаем груз.</p>
+                <ul class="list-check">
+                    <li>Перевод на карту (основной способ)</li>
+                    <li>Безнал без НДС (+7% к цене)</li>
+                    <li>Безнал с НДС (+22% к цене)</li>
+                </ul>
+                <p style="font-size: 0.9rem; margin-top:10px;">При работе по договору возможна отсрочка платежа (5 дней) для постоянных клиентов.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="quality-block fade-in-section">
+        <div class="container">
+            <h2>Стандарты Качества</h2>
+            <p>
+                Мы понимаем, что такое премиум. Строгий отбор по высоте стебля, размеру бутона и качеству упаковки.
+                Контроль температурного режима на всех этапах.
+            </p>
+            <p><em>В случае объективных проблем с качеством (потери при транспортировке по нашей вине) мы всегда идем навстречу и обсуждаем варианты компенсации.</em></p>
+            
+            <h3 style="color: var(--color-white); margin-top: 2rem;">Кому мы подходим</h3>
+            <div class="audience-list">
+                <div class="audience-item">Цветочные салоны</div>
+                <div class="audience-item">Оптовые базы</div>
+                <div class="audience-item">Студии декора</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section container fade-in-section">
+        <h2 class="text-center">Частые вопросы</h2>
+        <div style="max-width: 800px; margin: 0 auto;">
+            <details>
+                <summary>Какой минимальный объём заказа?</summary>
+                <p>Минимальный заказ — от 1 коробки (в зависимости от сорта, см. таблицу).</p>
+            </details>
+            <details>
+                <summary>За сколько дней нужно оформлять заказ?</summary>
+                <p>Рекомендуем оформлять заявку за 3-4 дня до желаемой даты получения в Москве, чтобы мы успели запланировать срез.</p>
+            </details>
+            <details>
+                <summary>Можно ли миксовать разные позиции в одной коробке?</summary>
+                <p>Как правило, мы отгружаем моно-коробками для сохранности цветка, но для крупных заказов возможна индивидуальная комплектация по согласованию с менеджером.</p>
+            </details>
+            <details>
+                <summary>Как отслеживать груз?</summary>
+                <p>После передачи груза в ТК мы присылаем вам накладную, по которой вы можете отслеживать статус доставки у перевозчика.</p>
+            </details>
+        </div>
+    </section>
+
+    <section class="section container fade-in-section" id="form">
+        <div class="form-container">
+            <h2 class="text-center">Начать сотрудничество</h2>
+            <p class="text-center" style="margin-bottom: 2rem;">Заполните форму, чтобы получить актуальный прайс-лист и расчет поставки.</p>
+            
+            <form>
+                <div class="form-group">
+                    <label>Ваше имя</label>
+                    <input type="text" class="form-control" placeholder="Иван Иванов">
+                </div>
+                <div class="form-group">
+                    <label>Город</label>
+                    <input type="text" class="form-control" placeholder="Москва">
+                </div>
+                <div class="form-group">
+                    <label>Название магазина / компании</label>
+                    <input type="text" class="form-control" placeholder="Flower Studio">
+                </div>
+                <div class="form-group">
+                    <label>Телефон</label>
+                    <input type="tel" class="form-control" placeholder="+7 (999) 000-00-00">
+                </div>
+                <div class="form-group">
+                    <label>Предполагаемый объем закупки</label>
+                    <select class="form-control">
+                        <option>Пробная партия (1-2 коробки)</option>
+                        <option>Мелкий опт (до 10 коробок)</option>
+                        <option>Крупный опт (регулярные поставки)</option>
+                    </select>
+                </div>
+                <div class="text-center">
+                    <button type="submit" class="btn">Получить оптовый прайс</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="text-center" style="margin-top: 4rem;">
+            <h3>Контакты</h3>
+            <p>
+                <strong>Телефон:</strong> +7 (999) 123-45-67<br>
+                <strong>E-mail:</strong> sales@armenia-flowers-opt.ru<br>
+                <strong>Мессенджеры:</strong> WhatsApp / Telegram
+            </p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2023 Цветы Армении. Оптовые поставки цветов.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Плавное появление блоков при скролле
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Анимация проигрывается один раз
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.fade-in-section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
